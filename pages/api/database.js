@@ -6,7 +6,6 @@ export default async function database(req, res) {
 
     const { db } = await connectToDatabase();
 
-    // Use the collection "people"
     const dest = db.collection("readings");
     const clients = await db.collection("clients").find({}).limit(20).toArray();
 
@@ -16,7 +15,6 @@ export default async function database(req, res) {
       timestamp: new Date().getTime(),
     }));
     dest.insertMany(readings);
-
   } catch (err) {
     console.log(err.stack);
   }

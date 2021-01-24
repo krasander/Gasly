@@ -4,30 +4,6 @@ import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recha
 import Title from './Title';
 import useSWR from 'swr'
 
-export function Movies({ movies }) {
-
-  return (
-
-    <div>
-      <h1>Top 20 Movies of All Time</h1>
-      <p>
-        <small>(According to Metacritic)</small>
-      </p>
-      <ul>
-        {movies.map((movie) => (
-          <li>
-            <h2>{movie.title}</h2>
-            <h3>{movie.metacritic}</h3>
-            <p>{movie.plot}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-
-  );
-
-}
-
 // Generate Sales Data
 function createData(time, amount) {
   return { time, amount };
@@ -50,7 +26,7 @@ export default function Chart({ client }) {
   const theme = useTheme();
   // var data = data1;
   console.log("Client: ", client);
-  const clientId = client.clientId;
+  const clientId = client._id;
 
   const { data, error } = useSWR(`/api/readings/${clientId}`);
 
