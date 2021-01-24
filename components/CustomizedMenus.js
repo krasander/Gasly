@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -29,60 +29,68 @@ import DraftsIcon from "@material-ui/icons/Drafts";
 import SendIcon from "@material-ui/icons/Send";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Help } from "@material-ui/icons";
 
-export default function CustomizedMenus({ activeClient, setActiveClient, clients }) {
-    if (!clients) {
-        return null;
-    }
-    const [anchorEl, setAnchorEl] = useState(null);
-    const classes = withStyles();
-    const handleClickListItem = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-  
-    const handleMenuItemClick = (client) => {
-      setActiveClient(client.name);
-      setAnchorEl(null);
-    };
-  
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
-  
-    return (
-      <div className={classes.root}>
-        <List component="nav" aria-label="Device settings">
-          <ListItem
-            button
-            aria-haspopup="true"
-            aria-controls="lock-menu"
-            aria-label="when device is locked"
-            onClick={handleClickListItem}
-          >
-            <ListItemText primary="Current client" secondary={activeClient} />
-          </ListItem>
-        </List>
-        <Menu
-          id="lock-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          {clients.map((client, index) => (
-            <MenuItem
-              key={client._id}
-              onClick={(event) => handleMenuItemClick(client)}
-            >
-              {client.name}
-            </MenuItem>
-          ))}
-        </Menu>
-      </div>
-    );
+export default function CustomizedMenus({
+  activeClient,
+  setActiveClient,
+  clients,
+}) {
+
+  if (!clients) {
+    return null;
   }
+  const [anchorEl, setAnchorEl] = useState(null);
+  const classes = withStyles();
+  const handleClickListItem = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuItemClick = (client) => {
+    setActiveClient(client);
+    setAnchorEl(null);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <div className={classes.root}>
+      <List component="nav" aria-label="Device settings">
+        <ListItem
+          button
+          aria-haspopup="true"
+          aria-controls="lock-menu"
+          aria-label="when device is locked"
+          onClick={handleClickListItem}
+        >
+          <ListItemText
+            primary="Current client"
+            secondary={activeClient.name}
+          />
+        </ListItem>
+      </List>
+      <Menu
+        id="lock-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        {clients.map((client) => (
+          <MenuItem
+            key={client._id}
+            onClick={(event) => handleMenuItemClick(client)}
+          >
+            {client.name}
+          </MenuItem>
+        ))}
+      </Menu>
+    </div>
+  );
+}

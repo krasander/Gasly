@@ -2,6 +2,7 @@ import React from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
 import Title from './Title';
+import useSWR from 'swr'
 
 export function Movies({ movies }) {
 
@@ -47,8 +48,18 @@ const data1 = [
 
 export default function Chart({ client }) {
   const theme = useTheme();
-  var data = data1;
+  // var data = data1;
+  console.log("Client: ", client);
+  const clientId = client.clientId;
+
+  const { data, error } = useSWR(`/api/readings/${clientId}`);
+
+  console.log(data);
+  console.log(error);
+  if (error) return <div>failed to load</div>
+  if (!data) return <div>loading...</div>
   
+
   return (
     <React.Fragment>
       <Title>Today</Title>

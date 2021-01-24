@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -29,13 +29,13 @@ import DraftsIcon from "@material-ui/icons/Drafts";
 import SendIcon from "@material-ui/icons/Send";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Help } from "@material-ui/icons";
 
-import CustomizedMenus from "./CustomizedMenus"
+import CustomizedMenus from "./CustomizedMenus";
 
 function Copyright() {
   return (
@@ -49,40 +49,6 @@ function Copyright() {
     </Typography>
   );
 }
-
-// const StyledMenu = withStyles({
-//   paper: {
-//     border: "1px solid #d3d4d5",
-//   },
-// })((props) => (
-//   <Menu
-//     elevation={0}
-//     getContentAnchorEl={null}
-//     anchorOrigin={{
-//       vertical: "bottom",
-//       horizontal: "center",
-//     }}
-//     transformOrigin={{
-//       vertical: "top",
-//       horizontal: "center",
-//     }}
-//     {...props}
-//   />
-// ));
-
-
-// const StyledMenuItem = withStyles((theme) => ({
-//   root: {
-//     "&:focus": {
-//       backgroundColor: theme.palette.primary.main,
-//       "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-//         color: theme.palette.common.white,
-//       },
-//     },
-//   },
-// }))(MenuItem);
-
-
 
 const drawerWidth = 240;
 
@@ -167,7 +133,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard({ user, clients }) {
   console.log("user: ", user.email);
-  
+
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const handleDrawerOpen = () => {
@@ -177,8 +143,8 @@ export default function Dashboard({ user, clients }) {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  const [activeClient, setActiveClient] = useState();
-  
+  const [activeClient, setActiveClient] = useState({});
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -239,13 +205,17 @@ export default function Dashboard({ user, clients }) {
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <Chart client={activeClient}/>
+                <Chart client={activeClient} />
               </Paper>
             </Grid>
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <CustomizedMenus activeClient={activeClient} setActiveClient={setActiveClient} clients={clients}/>
+                <CustomizedMenus
+                  activeClient={activeClient}
+                  setActiveClient={setActiveClient}
+                  clients={clients}
+                />
               </Paper>
             </Grid>
             {/* Recent Orders */}
