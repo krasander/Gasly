@@ -44,31 +44,11 @@ const data1 = [
   createData('24:00', undefined),
 ];
 
-const data2 = [
-  createData('00:00', 2400),
-  createData('03:00', 2400),
-  createData('06:00', 2000),
-  createData('09:00', 1500),
-  createData('12:00', 800),
-  createData('15:00', 600),
-  createData('18:00', 300),
-  createData('21:00', 0),
-  createData('24:00', undefined),
-];
 
-export default function Chart({ client, movies }) {
+export default function Chart({ client }) {
   const theme = useTheme();
-  var data = null;
-  if (client === "Client 1") {
-    data = data1;
-  } else if (client === "Client 2") {
-    data = data2;
-  } else {
-    return (
-      <Movies movies={movies} />
-    );
-  }
-    
+  var data = data1;
+  
   return (
     <React.Fragment>
       <Title>Today</Title>

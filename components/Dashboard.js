@@ -35,9 +35,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Help } from "@material-ui/icons";
 
-
-
-
+import CustomizedMenus from "./CustomizedMenus"
 
 function Copyright() {
   return (
@@ -52,94 +50,39 @@ function Copyright() {
   );
 }
 
-const StyledMenu = withStyles({
-  paper: {
-    border: "1px solid #d3d4d5",
-  },
-})((props) => (
-  <Menu
-    elevation={0}
-    getContentAnchorEl={null}
-    anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "center",
-    }}
-    transformOrigin={{
-      vertical: "top",
-      horizontal: "center",
-    }}
-    {...props}
-  />
-));
-
-const clients = [
-  'Client 1',
-  'Client 2',
-  'Client 3',
-  'Client 4',
-];
+// const StyledMenu = withStyles({
+//   paper: {
+//     border: "1px solid #d3d4d5",
+//   },
+// })((props) => (
+//   <Menu
+//     elevation={0}
+//     getContentAnchorEl={null}
+//     anchorOrigin={{
+//       vertical: "bottom",
+//       horizontal: "center",
+//     }}
+//     transformOrigin={{
+//       vertical: "top",
+//       horizontal: "center",
+//     }}
+//     {...props}
+//   />
+// ));
 
 
+// const StyledMenuItem = withStyles((theme) => ({
+//   root: {
+//     "&:focus": {
+//       backgroundColor: theme.palette.primary.main,
+//       "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
+//         color: theme.palette.common.white,
+//       },
+//     },
+//   },
+// }))(MenuItem);
 
-const StyledMenuItem = withStyles((theme) => ({
-  root: {
-    "&:focus": {
-      backgroundColor: theme.palette.primary.main,
-      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-        color: theme.palette.common.white,
-      },
-    },
-  },
-}))(MenuItem);
 
-export function CustomizedMenus({ activeClient, setActiveClient }) {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const classes = withStyles();
-  const handleClickListItem = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuItemClick = (client) => {
-    setActiveClient(client);
-    setAnchorEl(null);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  return (
-    <div className={classes.root}>
-      <List component="nav" aria-label="Device settings">
-        <ListItem
-          button
-          aria-haspopup="true"
-          aria-controls="lock-menu"
-          aria-label="when device is locked"
-          onClick={handleClickListItem}
-        >
-          <ListItemText primary="Current client" secondary={activeClient} />
-        </ListItem>
-      </List>
-      <Menu
-        id="lock-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        {clients.map((client, index) => (
-          <MenuItem
-            key={client}
-            onClick={(event) => handleMenuItemClick(client)}
-          >
-            {client}
-          </MenuItem>
-        ))}
-      </Menu>
-    </div>
-  );
-}
 
 const drawerWidth = 240;
 
@@ -222,7 +165,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard({user, movies}) {
+export default function Dashboard({ user, clients }) {
+  console.log(clients);
   console.log("user: ", user.email);
   const classes = useStyles();
   const [open, setOpen] = useState(true);
@@ -295,13 +239,13 @@ export default function Dashboard({user, movies}) {
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <Chart client={activeClient} movies={movies}/>
+                <Chart client={activeClient}/>
               </Paper>
             </Grid>
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <CustomizedMenus activeClient={activeClient} setActiveClient={setActiveClient}/>
+                <CustomizedMenus activeClient={activeClient} setActiveClient={setActiveClient} clients={clients}/>
               </Paper>
             </Grid>
             {/* Recent Orders */}
