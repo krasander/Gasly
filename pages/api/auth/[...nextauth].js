@@ -17,7 +17,7 @@ const options = {
   callbacks: {
     redirect: async (url, _) => {
       if (url === '/api/auth/signin') {
-        return Promise.resolve('/profile')
+        return Promise.resolve('/')
       }
       return Promise.resolve('/api/auth/signin')
     },
