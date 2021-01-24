@@ -166,8 +166,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard({ user, clients }) {
-  console.log(clients);
   console.log("user: ", user.email);
+  
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const handleDrawerOpen = () => {

@@ -22,7 +22,7 @@ export default function Page({clients}) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 
   const { db } = await connectToDatabase();
 

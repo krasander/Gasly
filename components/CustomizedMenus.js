@@ -76,7 +76,7 @@ export default function CustomizedMenus({ activeClient, setActiveClient, clients
         >
           {clients.map((client, index) => (
             <MenuItem
-              key={client.id}
+              key={client._id}
               onClick={(event) => handleMenuItemClick(client)}
             >
               {client.name}
