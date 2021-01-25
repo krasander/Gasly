@@ -24,24 +24,30 @@ const data1 = [
 
 export default function Chart({ client }) {
   const theme = useTheme();
-  // var data = data1;
-  console.log("Client: ", client);
+  if (!client) {
+    return<div>Select client</div>;
+  }
+  
   const clientId = client._id;
-
+  
   const { data, error } = useSWR(`/api/readings/${clientId}`);
 
-  console.log(data);
+  console.log("Received data: ", data);
   console.log(error);
+  
   if (error) return <div>failed to load</div>
   if (!data) return <div>loading...</div>
-  
+  const readingData = data["readings"].map((reading) => ({
+    time: reading["timestamp"].toString(10),
+    amount: reading["reading"]
+  }));
 
   return (
     <React.Fragment>
       <Title>Today</Title>
       <ResponsiveContainer>
         <LineChart
-          data={data}
+          data={readingData}
           margin={{
             top: 16,
             right: 16,

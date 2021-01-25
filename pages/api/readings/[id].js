@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   const {
     query: { id },
   } = req;
-  console.log("das ID: ", id);
+
   const { db } = await connectToDatabase();
   const readings = await db
     .collection("readings")

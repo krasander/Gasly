@@ -143,7 +143,7 @@ export default function Dashboard({ user, clients }) {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  const [activeClient, setActiveClient] = useState({});
+  const [activeClient, setActiveClient] = useState(clients[0]);
 
   return (
     <div className={classes.root}>
