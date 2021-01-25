@@ -37,6 +37,7 @@ import { Help } from "@material-ui/icons";
 
 import CustomizedMenus from "./CustomizedMenus";
 import useSWR from "swr";
+import SimpleCard from "./SimpleCard";
 
 function Copyright() {
   return (
@@ -182,11 +183,15 @@ export default function Dashboard({ user, clients }) {
           >
             Dashboard
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            // className={classes.title}
+          >
+            Hello, {user.email}
+          </Typography>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -209,18 +214,15 @@ export default function Dashboard({ user, clients }) {
       <div className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Chart
-                  client={activeClient}
-                  activeClientData={activeClientData}
-                />
-              </Paper>
+          <Grid container spacing={2}>
+            <Grid item xs={4}>
+                <SimpleCard activeClientData={activeClientData}/>
+            </Grid>
+            <Grid item xs={4}>
+                <SimpleCard activeClientData={activeClientData}/>
             </Grid>
             {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
+            <Grid item xs={4}>
               <Paper className={fixedHeightPaper}>
                 <CustomizedMenus
                   activeClient={activeClient}
@@ -229,10 +231,12 @@ export default function Dashboard({ user, clients }) {
                 />
               </Paper>
             </Grid>
-            {/* Recent Orders */}
             <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
+              <Paper className={fixedHeightPaper}>
+                <Chart
+                  client={activeClient}
+                  activeClientData={activeClientData}
+                />
               </Paper>
             </Grid>
           </Grid>
