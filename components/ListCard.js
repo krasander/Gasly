@@ -5,7 +5,11 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
 const useStyles = makeStyles({
   root: {
     height: "100%",
@@ -28,32 +32,42 @@ export default function SimpleCard({ activeClientData }) {
   if (!activeClientData) {
     return <div>Select client</div>;
   }
-
+  var readerData = [];
+  for (let index = 0; index < 10; index++) {
+    let sum = 0;
+    for (let i = 0; i < activeClientData.length; i++) {
+      sum += activeClientData[i].readings[index].reading;
+    }
+    readerData.push({ readerId: index + 1, sumReading: sum });
+  }
+  console.log("data in simplecard: ", readerData);
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} style={{ maxHeight: 250, overflow: "auto" }}>
       <CardContent>
         <Typography
           className={classes.title}
           color="textSecondary"
           gutterBottom
         >
-          Total daily consumption
+          Total consumption of individual readers
         </Typography>
-        <Typography variant="h5" component="h2">
-          {totalConsumption}
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell>Reader</TableCell>
+              <TableCell>Value</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {readerData.map((reading) => (
+              <TableRow key={reading.readerId}>
+                <TableCell>{reading.readerId}</TableCell>
+                <TableCell>{reading.sumReading}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </Card>
   );
 }

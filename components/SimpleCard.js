@@ -31,7 +31,9 @@ export default function SimpleCard({ activeClientData }) {
   const bull = <span className={classes.bullet}>•</span>;
   var totalConsumption = 0;
   for (let index = 0; index < activeClientData.length; index++) {
-    totalConsumption += activeClientData[index].reading;
+    for (let i = 0; i < 10; i++) {
+      totalConsumption += activeClientData[index].readings[i].reading;
+    }
   }
 
   return (
@@ -56,9 +58,6 @@ export default function SimpleCard({ activeClientData }) {
           {'"a benevolent smile"'}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </Card>
   );
 }

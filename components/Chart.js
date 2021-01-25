@@ -17,12 +17,21 @@ export default function Chart({ client, activeClientData }) {
     return <div>Select client</div>;
   }
 
+  var readings = [];
+  for (let index = 0; index < activeClientData.length; index++) {
+    let sum = 0;
+    for (let i = 0; i < 10; i++) {
+      sum += activeClientData[index].readings[i].reading;
+    }
+    readings.push({ "timestamp": activeClientData[index].timestamp, "reading": sum });
+  }
+  console.log("after parsing: ", readings);
   return (
     <React.Fragment>
       <Title>Today</Title>
       <ResponsiveContainer>
         <LineChart
-          data={activeClientData}
+          data={readings}
           margin={{
             top: 16,
             right: 16,

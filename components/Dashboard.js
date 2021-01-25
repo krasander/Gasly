@@ -38,6 +38,7 @@ import { Help } from "@material-ui/icons";
 import CustomizedMenus from "./CustomizedMenus";
 import useSWR from "swr";
 import SimpleCard from "./SimpleCard";
+import ListCard from "./ListCard";
 
 function Copyright() {
   return (
@@ -214,16 +215,17 @@ export default function Dashboard({ user, clients }) {
       <div className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={2}>
-            <Grid item xs={4}>
-                <SimpleCard activeClientData={activeClientData}/>
+          <Grid container spacing={2} >
+            <Grid item xs={4} style={{maxHeight: 250, overflow: 'auto'}}>
+                <SimpleCard activeClientData={activeClientData} />
             </Grid>
             <Grid item xs={4}>
-                <SimpleCard activeClientData={activeClientData}/>
+              {/* <SimpleCard activeClientData={activeClientData}/> */}
+              <ListCard activeClientData={activeClientData} style={{maxHeight: 250, overflow: 'auto'}}/>
             </Grid>
             {/* Recent Deposits */}
             <Grid item xs={4}>
-              <Paper className={fixedHeightPaper}>
+              <Paper className={fixedHeightPaper} style={{maxHeight: 250, overflow: 'auto'}}>
                 <CustomizedMenus
                   activeClient={activeClient}
                   setActiveClient={setActiveClient}
