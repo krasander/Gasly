@@ -28,11 +28,6 @@ export default function SimpleCard({ activeClientData }) {
   if (!activeClientData) {
     return <div>Select client</div>;
   }
-  const bull = <span className={classes.bullet}>•</span>;
-  var totalConsumption = 0;
-  for (let index = 0; index < activeClientData.length; index++) {
-    totalConsumption += activeClientData[index].reading;
-  }
 
   return (
     <Card className={classes.root}>
