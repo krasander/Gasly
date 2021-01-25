@@ -36,6 +36,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Help } from "@material-ui/icons";
 
 import CustomizedMenus from "./CustomizedMenus";
+import useSWR from "swr";
 
 function Copyright() {
   return (
@@ -144,6 +145,13 @@ export default function Dashboard({ user, clients }) {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const [activeClient, setActiveClient] = useState(clients[0]);
+  const [activeClientData, setActiveClientData] = useState();
+
+  if (activeClient) {
+    useSWR(`/api/readings/${activeClient._id}`, {
+      onSuccess: (data) => setActiveClientData(data.readings),
+    });
+  }
 
   return (
     <div className={classes.root}>
@@ -205,7 +213,10 @@ export default function Dashboard({ user, clients }) {
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <Chart client={activeClient} />
+                <Chart
+                  client={activeClient}
+                  activeClientData={activeClientData}
+                />
               </Paper>
             </Grid>
             {/* Recent Deposits */}

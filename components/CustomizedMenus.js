@@ -40,10 +40,10 @@ export default function CustomizedMenus({
   setActiveClient,
   clients,
 }) {
-
   if (!clients) {
     return null;
   }
+
   const [anchorEl, setAnchorEl] = useState(null);
   const classes = withStyles();
   const handleClickListItem = (event) => {
