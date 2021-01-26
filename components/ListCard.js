@@ -42,7 +42,7 @@ export default function SimpleCard({ activeClientData }) {
   }
   console.log("data in simplecard: ", readerData);
   return (
-    <Card className={classes.root} style={{ maxHeight: 250, overflow: "auto" }}>
+    <Card className={classes.root}  style={{ overflow: "auto" }}>
       <CardContent>
         <Typography
           className={classes.title}

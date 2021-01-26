@@ -115,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   fixedHeight: {
-    height: 240,
+    height: 215,
   },
 }));
 
@@ -167,7 +167,7 @@ export default function Dashboard({ user, clients }) {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            Gasly
           </Typography>
           <Typography
             component="h1"
@@ -201,16 +201,14 @@ export default function Dashboard({ user, clients }) {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={2} >
-            <Grid item xs={4} style={{maxHeight: 250, overflow: 'auto'}}>
+            <Grid item xs={4} style={{maxHeight: 230, overflow: 'auto'}}>
                 <SimpleCard activeClientData={activeClientData} />
             </Grid>
-            <Grid item xs={4}>
-              {/* <SimpleCard activeClientData={activeClientData}/> */}
-              <ListCard activeClientData={activeClientData} style={{maxHeight: 250, overflow: 'auto'}}/>
+            <Grid item xs={4}  style={{ maxHeight: 230, overflow: "auto" }}>
+              <ListCard activeClientData={activeClientData}/>
             </Grid>
-            {/* Recent Deposits */}
             <Grid item xs={4}>
-              <Paper className={fixedHeightPaper} style={{maxHeight: 250, overflow: 'auto'}}>
+              <Paper className={fixedHeightPaper}>
                 <CustomizedMenus
                   activeClient={activeClient}
                   setActiveClient={setActiveClient}

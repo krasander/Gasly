@@ -13,6 +13,5 @@ export default async function handler(req, res) {
     .limit(24)
     .toArray();
 
-  console.log(readings);
   res.json({ readings: readings });
 }
