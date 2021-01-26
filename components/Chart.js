@@ -19,7 +19,7 @@ export default function Chart({ client, activeClientData }) {
   if (!client || !activeClientData) {
     return <div>Select client</div>;
   }
-  activeClientData.reverse();
+  
   var readings = [];
   for (let index = 0; index < activeClientData.length; index++) {
     let sum = 0;
