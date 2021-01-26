@@ -203,13 +203,13 @@ export default function Dashboard({ user, clients }) {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={2} >
-            <Grid item xs={4} style={{maxHeight: 230, overflow: 'auto'}}>
+            <Grid item xs={3} style={{maxHeight: 230, overflow: 'auto'}}>
                 <SimpleCard activeClientData={activeClientData} />
             </Grid>
-            <Grid item xs={4}  style={{ maxHeight: 230, overflow: "auto" }}>
+            <Grid item xs={6}  style={{ maxHeight: 230, overflow: "auto" }}>
               <ListCard activeClientData={activeClientData}/>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <Paper className={fixedHeightPaper}>
                 <CustomizedMenus
                   activeClient={activeClient}

@@ -48,7 +48,7 @@ export default function SimpleCard({ activeClientData }) {
         >
           Total daily consumption
         </Typography>
-        <Typography variant="h5" component="h2">
+        <Typography variant="h3" component="h2">
           {totalConsumption}
         </Typography>
       </CardContent>
