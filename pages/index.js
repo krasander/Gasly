@@ -1,4 +1,4 @@
-import { signIn, signOut, useSession } from "next-auth/client";
+import { signIn, useSession } from "next-auth/client";
 import Dashboard from "../components/Dashboard";
 import { connectToDatabase } from "../util/mongodb";
 
@@ -12,6 +12,7 @@ export default function Page({ clients }) {
       {!session && (
         <>
           Not signed in <br />
+          {/* <signIn>{signIn}</signIn> */}
           <button onClick={signIn}>Sign in</button>
         </>
       )}
@@ -20,18 +21,13 @@ export default function Page({ clients }) {
   );
 }
 
+/**
+ * This will get the client names from "clients" collection
+ */
 export async function getStaticProps() {
   const { db } = await connectToDatabase();
 
-  const clients = await db
-
-    .collection("clients")
-
-    .find({})
-
-    .limit(20)
-
-    .toArray();
+  const clients = await db.collection("clients").find({}).limit(20).toArray();
 
   return {
     props: {

@@ -10,22 +10,35 @@ import {
 } from "recharts";
 import Title from "./Title";
 
-
+/**
+ * Display the consumption over the last 24 hours
+ * @param {*} param0
+ */
 export default function Chart({ client, activeClientData }) {
   const theme = useTheme();
   if (!client || !activeClientData) {
     return <div>Select client</div>;
   }
-
+  activeClientData.reverse();
   var readings = [];
   for (let index = 0; index < activeClientData.length; index++) {
     let sum = 0;
     for (let i = 0; i < 10; i++) {
       sum += activeClientData[index].readings[i].reading;
     }
-    readings.push({ "timestamp": activeClientData[index].timestamp, "reading": sum });
+    // Convert timestamp into human readable format
+    var date = new Date(activeClientData[index].timestamp);
+    // Hours part from the timestamp
+    var hours = date.getHours();
+    // Minutes part from the timestamp
+    var minutes = "0" + date.getMinutes();
+
+    var formattedTime = hours + ":" + minutes.substr(-2);
+    readings.push({
+      timestamp: formattedTime,
+      reading: sum,
+    });
   }
-  console.log("after parsing: ", readings);
   return (
     <React.Fragment>
       <Title>Today</Title>

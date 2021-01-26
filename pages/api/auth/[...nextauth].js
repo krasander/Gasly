@@ -8,7 +8,8 @@ const options = {
     server: process.env.EMAIL_SERVER, 
     from: process.env.EMAIL_FROM
   }),
-],
+  ],
+  // Session is valid for 30 days
   session: {
     jwt: true,
     maxAge: 30 * 24 * 60 * 60,

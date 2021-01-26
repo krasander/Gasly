@@ -12,7 +12,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { mainListItems, secondaryListItems } from "./listItems";
@@ -29,9 +28,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
+      {"Gasly "}
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -119,9 +116,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * The dashboard. It consists of two cards, one menu and one graph, an appbar and a drawer.
+ * @param {*} param0 
+ */
 export default function Dashboard({ user, clients }) {
-  console.log("user: ", user.email);
-
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const handleDrawerOpen = () => {
@@ -134,6 +133,10 @@ export default function Dashboard({ user, clients }) {
   const [activeClient, setActiveClient] = useState(clients[0]);
   const [activeClientData, setActiveClientData] = useState();
 
+  /**
+   * useSWR queries our database for the data of the specific client,
+   * and then passes it to cards & chart
+   */
   if (activeClient) {
     useSWR(`/api/readings/${activeClient._id}`, {
       onSuccess: (data) => setActiveClientData(data.readings),
@@ -195,7 +198,6 @@ export default function Dashboard({ user, clients }) {
         <Divider />
         <List>{mainListItems}</List>
         <Divider />
-        <List>{secondaryListItems}</List>
       </Drawer>
       <div className={classes.content}>
         <div className={classes.appBarSpacer} />
@@ -217,7 +219,7 @@ export default function Dashboard({ user, clients }) {
               </Paper>
             </Grid>
             <Grid item xs={12}>
-              <Paper>
+              <Paper className={fixedHeightPaper}>
                 <Chart
                   client={activeClient}
                   activeClientData={activeClientData}
