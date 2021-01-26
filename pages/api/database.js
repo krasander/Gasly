@@ -5,7 +5,7 @@ export default async function database(req, res) {
     const auth = req.headers.authorization;
     if (auth !== process.env.SECRET_API_KEY) {
       console.log("Incorrect authorization");
-      return res.json({ message: "NOT OK" });
+      return res.json({ message: "NOT OK", auth: auth });
     }
     console.log("Connected correctly to server");
 
