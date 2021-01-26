@@ -33,12 +33,11 @@ export default function CustomizedMenus({
 
   return (
     <div className={classes.root}>
-      <List component="nav" aria-label="Device settings">
+      <List component="nav">
         <ListItem
           button
           aria-haspopup="true"
           aria-controls="lock-menu"
-          aria-label="when device is locked"
           onClick={handleClickListItem}
         >
           <ListItemText

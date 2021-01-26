@@ -20,20 +20,20 @@ export default function Chart({ client, activeClientData }) {
     return <div>Select client</div>;
   }
   
-  var readings = [];
+  let readings = [];
   for (let index = 0; index < activeClientData.length; index++) {
     let sum = 0;
     for (let i = 0; i < 10; i++) {
       sum += activeClientData[index].readings[i].reading;
     }
     // Convert timestamp into human readable format
-    var date = new Date(activeClientData[index].timestamp);
+    const date = new Date(activeClientData[index].timestamp);
     // Hours part from the timestamp
-    var hours = date.getHours();
+    const hours = date.getHours();
     // Minutes part from the timestamp
-    var minutes = "0" + date.getMinutes();
+    const minutes = "0" + date.getMinutes();
 
-    var formattedTime = hours + ":" + minutes.substr(-2);
+    const formattedTime = hours + ":" + minutes.substr(-2);
     readings.push({
       timestamp: formattedTime,
       reading: sum,

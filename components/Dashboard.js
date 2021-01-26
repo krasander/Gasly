@@ -14,10 +14,13 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import { mainListItems, secondaryListItems } from "./listItems";
 import Chart from "./Chart";
 import List from "@material-ui/core/List";
-
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import { signOut } from "next-auth/client";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import CustomizedMenus from "./CustomizedMenus";
 import useSWR from "swr";
@@ -34,6 +37,17 @@ function Copyright() {
     </Typography>
   );
 }
+
+const mainListItems = (
+  <div>
+    <ListItem button onClick={signOut}>
+      <ListItemIcon>
+        <ExitToAppIcon />
+      </ListItemIcon>
+      <ListItemText primary="Sign Out" />
+    </ListItem>
+  </div>
+);
 
 const drawerWidth = 240;
 

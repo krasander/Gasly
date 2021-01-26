@@ -30,7 +30,7 @@ export default function SimpleCard({ activeClientData }) {
   if (!activeClientData) {
     return <div>Select client</div>;
   }
-  var totalConsumption = 0;
+  let totalConsumption = 0;
   // Iterate over all readings and sum all values
   for (let index = 0; index < activeClientData.length; index++) {
     for (let i = 0; i < 10; i++) {

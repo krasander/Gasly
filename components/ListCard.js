@@ -37,7 +37,7 @@ export default function SimpleCard({ activeClientData }) {
   }
 
   // Sum all the readings
-  var readerData = [];
+  let readerData = [];
   for (let index = 0; index < 10; index++) {
     let sum = 0;
     for (let i = 0; i < activeClientData.length; i++) {
