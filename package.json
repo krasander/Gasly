@@ -10,12 +10,17 @@
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
-    "mongodb": "^3.6.3",
     "next": "9.5.1",
     "next-auth": "^3.1.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "recharts": "^2.0.3",
     "swr": "^0.4.0"
+  },
+  "optionalDependencies": {
+    "mongodb": "^3.6.3"
+  },
+  "peerOptionalDependencies": {
+    "mongodb": "^3.6.0"
   }
 }
