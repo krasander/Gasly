@@ -217,7 +217,7 @@ export default function Dashboard({ user, clients }) {
               </Paper>
             </Grid>
             <Grid item xs={12}>
-              <Paper className={fixedHeightPaper}>
+              <Paper>
                 <Chart
                   client={activeClient}
                   activeClientData={activeClientData}

@@ -49,14 +49,6 @@ export default function SimpleCard({ activeClientData }) {
         <Typography variant="h5" component="h2">
           {totalConsumption}
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
       </CardContent>
     </Card>
   );
