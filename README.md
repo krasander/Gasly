@@ -4,7 +4,7 @@ This is a sample project. It allows an employee to login to dashboard via email 
 
 ## What you'll need
 
-Not much anything. The project is deployed on [Vercel](https://gasly.vercel.app)
+Not much anything. The project is deployed on [Vercel](https://gasly.vercel.app).
 A sign up will be generated via email for first time login.
 
 ## Viewing the data
