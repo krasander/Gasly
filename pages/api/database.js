@@ -2,6 +2,11 @@ import { connectToDatabase } from "../../util/mongodb";
 
 export default async function database(req, res) {
   try {
+    const auth = req.headers.authorization;
+    if (auth !== process.env.SECRET_API_KEY) {
+      console.log("Incorrect authorization");
+      return res.json({ message: "NOT OK" });
+    }
     console.log("Connected correctly to server");
 
     const { db } = await connectToDatabase();
