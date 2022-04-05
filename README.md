@@ -11,3 +11,7 @@ A sign up will be generated via email for first time login.
 
 Select a client from the menu on the right. 
 The card on the right will show the total daily gas consumption based on all meter readings collected. The middle card shows the total daily consumption of individual readers. The graph visualizes the gas consumption of the last 24 hours.
+
+## Data
+
+Meter readings are stored in MongoDB and new readings are generated every hour via a third party cron job by hitting the endpoint at _pages/api/database.js_.
